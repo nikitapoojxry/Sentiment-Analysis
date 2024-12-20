@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000000; /* Black Background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Container Styles */
+        .container {
+            background: linear-gradient(45deg, #1976D2, #42A5F5); /* Blue Gradient Background */
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            animation: glowBorder 2s infinite alternate; /* Border Flicker Effect */
+        }
+
+        /* Container Border Flicker Effect */
+        @keyframes glowBorder {
+            0% {
+                border: 3px solid #fff; /* White Border */
+            }
+            50% {
+                border: 3px solid #f2f2f2; /* Lighter White Border */
+            }
+            100% {
+                border: 3px solid #fff; /* White Border */
+            }
+        }
+
+        /* Heading Styles (Moderate Flickering Font) */
+        h1 {
+            color: white; /* White Text */
+            font-size: 2.5em; /* Font Size */
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-align: center;
+            animation: moderateFlicker 3s infinite alternate; /* Moderate Flicker Effect */
+            letter-spacing: 3px;
+        }
+
+        /* Moderate Flicker Animation for the Heading */
+        @keyframes moderateFlicker {
+            0% {
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.6), 0 0 10px rgba(255, 255, 255, 0.4);
+            }
+            50% {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5);
+            }
+            100% {
+                text-shadow: 0 0 5px rgba(255, 255, 255, 0.6), 0 0 10px rgba(255, 255, 255, 0.4);
+            }
+        }
+
+        /* Input Styles */
+        input[type="text"] {
+            width: 80%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 2px solid #7F8C8D; /* Soft Gray Border */
+            font-size: 1.1em;
+            outline: none;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            background-color: #BDC3C7; /* Light Gray Background */
+        }
+
+        input[type="text"]:focus {
+            border-color: #1ABC9C; /* Teal Focus Border */
+            background-color: #D5DBDB; /* Light Grayish Background */
+        }
+
+        input[type="text"]:focus::placeholder {
+            color: #1ABC9C; /* Teal Placeholder */
+        }
+
+        input::placeholder {
+            color: #7F8C8D; /* Soft Gray Placeholder */
+            font-style: italic;
+        }
+
+        /* Button Styles */
+        button {
+            background-color: #000000; /* Black Button */
+            color: white;
+            font-size: 1.1em;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            animation: buttonFlicker 2s infinite alternate; /* Button Flicker Effect */
+        }
+
+        button:hover {
+            background-color: #333333; /* Darker Black Button */
+            transform: scale(1.05);
+        }
+
+        button:active {
+            background-color: #1D1D1D; /* Even Darker Black Button on Click */
+            transform: scale(0.98);
+        }
+
+        /* Flicker Effect for Button */
+        @keyframes buttonFlicker {
+            0% {
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.6);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(0, 0, 0, 1), 0 0 30px rgba(0, 0, 0, 0.8);
+            }
+            100% {
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.6);
+            }
+        }
+
+        /* Adding a pulse effect on the form */
+        .pulse {
+            animation: pulseAnimation 2s infinite;
+        }
+
+        @keyframes pulseAnimation {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container pulse">
+        <h1>Sentiment Analysis</h1>
+        <form method="POST">
+            <input type="text" name="text" placeholder="Enter your text here..." required>
+            <button type="submit">Submit</button>
+        </form>
+
+        {% if sentiment %}
+        <div class="result">
+            {{sentiment}}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
